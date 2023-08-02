@@ -1,0 +1,9 @@
+[{
+	"event" : "test",
+	"flags" : [[0, "&"], [4, "&"]],
+	"read" : ["this is a test", "this is also a test", "this is a third test"]
+},
+{
+	"event" : 0,
+	"flags" : [[0, "^"], [4, "|"]]
+}]
