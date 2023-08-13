@@ -3,7 +3,7 @@
 export default class Game {
     constructor () {
         this.events = []
-        this.availEvnts = []
+        //this.availEvnts = []
         this.bypassKeys = ["p", "m"]
     }
 
@@ -17,7 +17,7 @@ export default class Game {
         }
     }
 
-    awaitKeyPress (only = []) {
+    awaitKeyPress (...only) {
         let temp = this.bypassKeys;
         return new Promise((resolve) => {
             document.addEventListener('keydown', (e) => {
@@ -28,11 +28,3 @@ export default class Game {
         });
     } 
 }
-
-/*const tempGame = new Game();
-(async () => {
-    await tempGame.awaitKeyPress([], true);
-    console.log("made it here");
-})()
-
-console.log("hello")*/

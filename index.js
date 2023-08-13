@@ -1,4 +1,4 @@
-import Game from "./game.js"
+//import Game from "https://github.com/knightly28/CurryQuest/blob/main/game.js"
 
 const tempGame = new Game();
 (async () => {
