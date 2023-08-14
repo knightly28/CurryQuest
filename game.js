@@ -4,7 +4,7 @@ export default class Game {
     constructor () {
         this.flags = 0
         this.allEvents = gameEvents
-        this.activeEvents = gameEvents
+        this.activeEvents = []
         this.bypassKeys = ["p", "m"]
     }
 
