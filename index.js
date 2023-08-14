@@ -2,9 +2,11 @@ import Game from "./game.js"
 
 const tempGame = new Game();
 /*(async () => {
-    console.log("press the 'a' key")
-    await tempGame.awaitKeyPress(" ");
-    console.log("you pressed the 'a' key");
+    console.log("here")
+    await tempGame.readEvent(["this is a test", "this is also a test", "this is a third test"]);
+    console.log("after")
 })()*/
+//console.log(tempGame.activeEvents)
+tempGame.resolveEvents()
+console.log(tempGame.flags)
 
-tempGame.readEvent(["this is a test", "this is also a test", "this is a third test"])

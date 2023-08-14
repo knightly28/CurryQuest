@@ -4,7 +4,7 @@ export default class Game {
     constructor () {
         this.flags = 0
         this.allEvents = gameEvents
-        this.activeEvents = []
+        this.activeEvents = gameEvents
         this.bypassKeys = ["p", "m"]
     }
 
@@ -13,21 +13,30 @@ export default class Game {
     }*/
 
     resolveEvents () {
-        for (let e of this.activeEvents) {
-            
-        }
+        (async () => {
+            for (let e of this.activeEvents) {
+                for (let [key, value] of Object.entries(e)) {
+                    if (key !== "event") {
+                        await this[`${key}Event`](value);
+                    }
+                }
+            }
+        })();
     }
 
-    flagEvent (flags) {
-        for (let flag of flags) {
-            if (flag[1] === "&") {
-                this.flags &= ~(2 ** flag[0])
-            } else if (flag[1] === "|") {
-                this.flags |= (2 ** flag[0])
-            } else if (flag[1] === "^") {
-                this.flags ^= (2 ** flag[0])
+    flagsEvent (flags) {
+        return new Promise((resolve) => {
+            for (let flag of flags) {
+                if (flag[1] === "&") {
+                    this.flags &= ~(2 ** flag[0])
+                } else if (flag[1] === "|") {
+                    this.flags |= (2 ** flag[0])
+                } else if (flag[1] === "^") {
+                    this.flags ^= (2 ** flag[0])
+                }
             }
-        }
+            resolve()
+        });
     }
 
     readEvent (lines) {
@@ -38,8 +47,8 @@ export default class Game {
                     console.log(line)
                     await this.awaitKeyPress(" ")
                 }
+                resolve()
             })()
-            resolve()
         });
     }
 
