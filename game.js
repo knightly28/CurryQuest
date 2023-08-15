@@ -52,6 +52,10 @@ export default class Game {
         });
     }
 
+    shakeEvent () {
+        
+    }
+
     awaitKeyPress (...only) {
         return new Promise((resolve) => {
             document.addEventListener('keydown', (e) => {
