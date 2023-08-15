@@ -14,11 +14,15 @@ export default class Game {
 
     resolveEvents () {
         (async () => {
-            for (let e of this.activeEvents) {
-                for (let [key, value] of Object.entries(e)) {
-                    if (key !== "event") {
+            for (let events of this.activeEvents) {
+                for (let event of events) {
+                    let [key, value] = event;
+                    if (key === "await") {
+                        await this.awaitInterval(value)
+                    } else if (key !== "event") {
                         await this[`${key}Event`](value);
                     }
+                    console.log(this.flags)
                 }
             }
         })();
@@ -53,7 +57,7 @@ export default class Game {
     }
 
     shakeEvent () {
-        
+
     }
 
     awaitKeyPress (...only) {
@@ -65,4 +69,12 @@ export default class Game {
             });
         });
     } 
+
+    awaitInterval (time) {
+        return new Promise((resolve) => {
+            let temp = setTimeout(() => {
+                resolve()
+            }, time);
+        });
+    }
 }

@@ -1,5 +1,3 @@
-import Camera from "./camera.js"
-
 export default class Screen {
     constructor () {
         this.hiddenground = document.createElement("canvas");
@@ -32,7 +30,9 @@ export default class Screen {
     pan (panTo, dt = this.camDT) {
         this.enableCamFollow = false;
         let intvl = setInterval(() => {
-            
+            let temp = ((panTo.x - this.camX) ** 2 + (panTo.y - this.camY) ** 2) ** 0.5
+            this.camX += this.camX / temp * dt;
+            this.camY += this.camY / temp * dt;
         }, 10);
     }
 
